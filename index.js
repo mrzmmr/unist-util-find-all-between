@@ -5,7 +5,7 @@
  */
 var findAllBefore = require('unist-util-find-all-before');
 var findAllAfter = require('unist-util-find-all-after');
-var intersection = require('lodash.intersectionBy');
+var intersection = require('lodash.intersectionby');
 var is = require('unist-util-is');
 
 /*
