@@ -19,13 +19,31 @@
 
 ## Install
 
-```
+```sh
 npm install unist-util-find-all-between --save
 ```
 
 ## Usage
 
+```js
+var findAllBetween = require('unist-util-find-all-between');
+var inspect = require('unist-util-inspect')
+var remark = require('remark');
+
+var tree = remark().parse('Some _emphasis_, **importance**, and `code`.');
+
+var parent = tree.children[0]
+var start = parent.children[0]
+var end = parent.children[parent.children.length - 1]
+
+console.log(inspect(findAllBetween(paren, start, end, 'text')))
 ```
+
+Yelds:
+
+```bash
+text: "Some _emphasis__, " (1:1-1:19, 0-18)
+text: ", and " (1:33-1:39, 32-38)
 ```
 
 ## Tests
@@ -53,3 +71,4 @@ PRs accepted and greatly appreciated.
 ## License
 
 MIT © mrzmmr
+
