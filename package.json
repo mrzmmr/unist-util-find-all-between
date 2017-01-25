@@ -28,9 +28,6 @@
   },
   "homepage": "https://github.com/mrzmmr/unist-util-find-all-between#readme",
   "dependencies": {
-    "lodash.intersectionby": "^4.7.0",
-    "unist-util-find-all-after": "^1.0.0",
-    "unist-util-find-all-before": "^2.0.0",
     "unist-util-is": "^2.0.0"
   },
   "devDependencies": {

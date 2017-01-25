@@ -3,9 +3,6 @@
 /*
  * Dependencies
  */
-var findAllBefore = require('unist-util-find-all-before');
-var findAllAfter = require('unist-util-find-all-after');
-var intersection = require('lodash.intersectionby');
 var is = require('unist-util-is');
 
 /*
@@ -19,22 +16,40 @@ function findAllBetween(parent, start, end, test) {
     throw new Error('Expected parent node');
   }
 
-  /*
-   * Type check start and end
-   */
-  [start, end].forEach(function(input) {
-    if (!Number.isSafeInteger(input) || !is(input)) {
+  var children = parent.children;
+  var results = [];
+  var index = check(start);
+  var length = check(end);
+  var child;
+
+  while (index < length) {
+    child = children[index];
+
+    if (is(test, child, index, parent)) {
+      results.push(child);
+    }
+
+    index++;
+  }
+
+  return results;
+
+  function check(index) {
+    if (index && index.type) {
+      index = children.indexOf(index);
+    }
+
+    if (isNaN(index) || index < 0 || index === Infinity) {
       throw new Error('Expected positive finite index or child node');
     }
-  });
 
-  var nodesBefore = findAllBefore(parent, start, test);
-  var nodesAfter = findAllAfter(parent, start, test);
+    /* Performance. */
+    if (index > children.length) {
+      index = children.length;
+    }
 
-  return intesection(nodesAfter, nodesBefore, function(nodeA, nodeB) {
-    return is(nodeA, nodeB);
-  });
+    return index;
+  }
 }
 
 module.exports = findAllBetween;
-

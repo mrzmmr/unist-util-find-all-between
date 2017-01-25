@@ -37,9 +37,6 @@ npm test
 
 ## Dependencies
 
-- [lodash.intersectionby](https://github.com/lodash/lodash): The lodash method `_.intersectionBy` exported as a module.
-- [unist-util-find-all-after](https://github.com/wooorm/unist-util-find-all-after): Utility to find nodes after another node
-- [unist-util-find-all-before](https://github.com/wooorm/unist-util-find-all-before): Utility to find nodes before another node
 - [unist-util-is](https://github.com/wooorm/unist-util-is): Utility to check if a node passes a test
 
 ## Dev Dependencies
