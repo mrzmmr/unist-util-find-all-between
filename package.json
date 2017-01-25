@@ -1,0 +1,42 @@
+{
+  "name": "unist-util-find-all-between",
+  "version": "1.0.0",
+  "description": "Utility to find nodes between two nodes",
+  "main": "index.js",
+  "scripts": {
+    "tape": "tape test.js",
+    "test": "nyc npm run tape",
+    "posttest": "npm run coverage",
+    "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrzmmr/unist-util-find-all-between.git"
+  },
+  "keywords": [
+    "unist",
+    "node",
+    "find",
+    "between",
+    "util",
+    "utility"
+  ],
+  "author": "mrzmmr",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mrzmmr/unist-util-find-all-between/issues"
+  },
+  "homepage": "https://github.com/mrzmmr/unist-util-find-all-between#readme",
+  "dependencies": {
+    "lodash.intersectionby": "^4.7.0",
+    "unist-util-find-all-after": "^1.0.0",
+    "unist-util-find-all-before": "^2.0.0",
+    "unist-util-is": "^2.0.0"
+  },
+  "devDependencies": {
+    "codecov": "^1.0.1",
+    "nyc": "^10.1.2",
+    "remark": "^6.2.0",
+    "tape": "^4.6.3"
+  }
+}
