@@ -1,6 +1,6 @@
 # unist-util-find-all-between
 
-[![CircleCI](https://img.shields.io/circleci/project/github/mrzmmr/unist-util-find-all-between.svg)](https://github.com/mrzmmr/unist-util-find-all-between)
+[![Travis](https://img.shields.io/travis/mrzmmr/remark-behead.svg)](https://travis-ci.org/mrzmmr/remark-behead)
 [![Codecov](https://img.shields.io/codecov/c/github/mrzmmr/unist-util-find-all-between.svg)](https://codecov.io/gh/mrzmmr/unist-util-find-all-between)
 [![David](https://img.shields.io/david/mrzmmr/unist-util-find-all-between.svg)](https://david-dm.org/)
 [![David](https://img.shields.io/david/dev/mrzmmr/unist-util-find-all-between.svg)](https://david-dm.org/)
