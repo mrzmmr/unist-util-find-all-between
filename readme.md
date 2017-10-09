@@ -1,9 +1,9 @@
 # unist-util-find-all-between
 
-[![Travis](https://img.shields.io/travis/mrzmmr/remark-behead.svg)](https://travis-ci.org/mrzmmr/remark-behead)
+[![Travis](https://img.shields.io/travis/mrzmmr/unist-util-find-all-between.svg)](https://travis-ci.org/mrzmmr/unist-util-find-all-between)
 [![Codecov](https://img.shields.io/codecov/c/github/mrzmmr/unist-util-find-all-between.svg)](https://codecov.io/gh/mrzmmr/unist-util-find-all-between)
-[![David](https://img.shields.io/david/mrzmmr/unist-util-find-all-between.svg)](https://david-dm.org/)
-[![David](https://img.shields.io/david/dev/mrzmmr/unist-util-find-all-between.svg)](https://david-dm.org/)
+[![dependencies Status](https://david-dm.org/mrzmmr/unist-util-find-all-between/status.svg)](https://david-dm.org/mrzmmr/unist-util-find-all-between)
+[![devDependencies Status](https://david-dm.org/mrzmmr/unist-util-find-all-between/dev-status.svg)](https://david-dm.org/mrzmmr/unist-util-find-all-between?type=dev)
 [![npm](https://img.shields.io/npm/v/unist-util-find-all-between.svg)](https://www.npmjs.com/package/unist-util-find-all-between)
 
 
