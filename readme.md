@@ -36,7 +36,7 @@ var parent = tree.children[0]
 var start = parent.children[0]
 var end = parent.children[parent.children.length - 1]
 
-console.log(inspect(findAllBetween(paren, start, end, 'text')))
+console.log(inspect(findAllBetween(parent, start, end, 'text')))
 ```
 
 Yelds:
