@@ -2,9 +2,9 @@
 
 var findAllBetween = require('./')
 var remark = require('remark')
-var tape = require('tape')
+var test = require('tap').test
 
-tape('unist-util-find-all-between', function (test) {
+test('unist-util-find-all-between', function (test) {
 
   test.throws(function () {
     findAllBetween()
