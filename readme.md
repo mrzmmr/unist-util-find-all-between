@@ -1,11 +1,8 @@
 # unist-util-find-all-between
 
 [![Travis](https://img.shields.io/travis/mrzmmr/unist-util-find-all-between.svg)](https://travis-ci.org/mrzmmr/unist-util-find-all-between)
-[![Codecov](https://img.shields.io/codecov/c/github/mrzmmr/unist-util-find-all-between.svg)](https://codecov.io/gh/mrzmmr/unist-util-find-all-between)
-[![dependencies Status](https://david-dm.org/mrzmmr/unist-util-find-all-between/status.svg)](https://david-dm.org/mrzmmr/unist-util-find-all-between)
-[![devDependencies Status](https://david-dm.org/mrzmmr/unist-util-find-all-between/dev-status.svg)](https://david-dm.org/mrzmmr/unist-util-find-all-between?type=dev)
-[![npm](https://img.shields.io/npm/v/unist-util-find-all-between.svg)](https://www.npmjs.com/package/unist-util-find-all-between)
-
+[![Coverage
+Status](https://coveralls.io/repos/github/mrzmmr/unist-util-find-all-between/badge.svg?branch=master)](https://coveralls.io/github/mrzmmr/unist-util-find-all-between?branch=master)
 
 
 > Utility to find nodes between two nodes
@@ -57,18 +54,10 @@ npm test
 
 - [unist-util-is](https://github.com/wooorm/unist-util-is): Utility to check if a node passes a test
 
-## Dev Dependencies
-
-- [codecov](https://github.com/codecov/codecov-node): Uploading report to Codecov: https://codecov.io
-- [nyc](https://github.com/istanbuljs/nyc): the Istanbul command line interface
-- [remark](https://github.com/wooorm/remark/tree/master/packages): Markdown processor powered by plugins
-- [tape](https://github.com/substack/tape): tap-producing test harness for node and browsers
-
 ## Contribute
 
 PRs accepted and greatly appreciated.
 
 ## License
 
-MIT © mrzmmr
-
+MIT © Paul Zimmer
