@@ -36,7 +36,7 @@ var end = parent.children[parent.children.length - 1]
 console.log(inspect(findAllBetween(parent, start, end, 'text')))
 ```
 
-Yelds:
+Yields:
 
 ```bash
 text: "Some _emphasis__, " (1:1-1:19, 0-18)
