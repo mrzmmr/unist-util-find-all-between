@@ -1,5 +1,5 @@
 language: node_js
 node_js:
-  - '6.0'
-  - '8.0'
+    - 'lts/boron'
+    - 'node'
 after_script: npm run report
