@@ -1,6 +1,6 @@
 {
   "name": "unist-util-find-all-between",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Utility to find nodes between two nodes",
   "main": "index.js",
   "scripts": {
