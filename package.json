@@ -31,10 +31,10 @@
     "unist-util-is": "^2.0.0"
   },
   "devDependencies": {
-    "coveralls": "^3.0.2",
+    "coveralls": "^3.0.5",
     "nyc": "^14.1.1",
     "remark": "^8.0.0",
     "rimraf": "^2.6.2",
-    "tap": "^14.4.1"
+    "tap": "^14.4.2"
   }
 }
