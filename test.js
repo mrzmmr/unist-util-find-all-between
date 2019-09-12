@@ -32,31 +32,32 @@ test('unist-util-find-all-between', function (test) {
     }, 'Expected positive finite index or child node')
   }, 'Should fail without index')
 
-  test.doesNotThrow(function () {
-    test.throws(function () {
+  test.doesNotThrow(() => {
+    test.deepEqual(
       findAllBetween({
         type: 'foo',
         children: [{
+          type: 'foo'
+        }, {
           type: 'bar'
-        },
-          {
-            type: 'baz'
-          }]
-      }, 0, 1, false)
-    }, 'Expected function, string, or object as test')
-  }, 'Should fail with invalid test')
+        }]
+      }, 0, 1, false),
+      []
+    )
+  }, 'Should not throw with `unist-util-is` >= 4.0.0')
 
   test.doesNotThrow(function () {
     test.deepEqual(
       findAllBetween({
         type: 'foo',
         children: [{
+          type: 'foo',
+        }, {
           type: 'bar'
-        },
-          {
-            type: 'baz'
-          }]
-      }, 0, 1),
+        }, {
+          type: 'baz'
+        }]
+      }, 0, 2),
       [{type: 'bar'}]
     )
 
@@ -65,12 +66,11 @@ test('unist-util-find-all-between', function (test) {
         type: 'foo',
         children: [{
           type: 'bar'
-        },
-          {
-            type: 'baz'
-          }]
+        }, {
+          type: 'baz'
+        }]
       }, 0, 2),
-      [{type: 'bar'}, {type: 'baz'}]
+      []
     )
   }, 'Should support no test')
 
@@ -79,12 +79,13 @@ test('unist-util-find-all-between', function (test) {
       findAllBetween({
         type: 'foo',
         children: [{
+          type: 'foo'
+        }, {
           type: 'bar'
-        },
-          {
-            type: 'baz'
-          }]
-      }, 0, 1, 'bar'),
+        }, {
+          type: 'baz'
+        }]
+      }, 0, 2, 'bar'),
       [{type: 'bar'}]
     )
 
@@ -92,12 +93,13 @@ test('unist-util-find-all-between', function (test) {
       findAllBetween({
         type: 'foo',
         children: [{
+          type: 'foo'
+        }, {
           type: 'bar'
-        },
-          {
-            type: 'baz'
-          }]
-      }, 0, 1, 'baz'),
+        }, {
+          type: 'baz'
+        }]
+      }, 0, 2, 'baz'),
       []
     )
   }, 'Should support `string` test')
@@ -107,12 +109,13 @@ test('unist-util-find-all-between', function (test) {
       findAllBetween({
         type: 'foo',
         children: [{
+          type: 'foo'
+        }, {
           type: 'bar'
-        },
-          {
-            type: 'baz'
-          }]
-      }, 0, 1, function (node) {
+        }, {
+          type: 'baz'
+        }]
+      }, 0, 2, function (node) {
         return node.type === 'bar'
       }),
       [{type: 'bar'}]
@@ -122,12 +125,13 @@ test('unist-util-find-all-between', function (test) {
       findAllBetween({
         type: 'foo',
         children: [{
+          type: 'foo'
+        }, {
           type: 'bar'
-        },
-          {
-            type: 'baz'
-          }]
-      }, 0, 1, function (node) {
+        }, {
+          type: 'baz'
+        }]
+      }, 0, 2, function (node) {
         return node.type === 'baz'
       }),
       []
@@ -139,12 +143,13 @@ test('unist-util-find-all-between', function (test) {
       findAllBetween({
         type: 'foo',
         children: [{
+          type: 'foo'
+        }, {
           type: 'bar'
-        },
-          {
-            type: 'baz'
-          }]
-      }, 0, 1, {type: 'bar'}),
+        }, {
+          type: 'baz'
+        }]
+      }, 0, 2, {type: 'bar'}),
       [{type: 'bar'}]
     )
 
@@ -152,15 +157,60 @@ test('unist-util-find-all-between', function (test) {
       findAllBetween({
         type: 'foo',
         children: [{
+          type: 'foo'
+        }, {
           type: 'bar'
-        },
-          {
-            type: 'baz'
-          }]
-      }, 0, 1, {type: 'baz'}),
+        }, {
+          type: 'baz'
+        }]
+      }, 0, 2, {type: 'baz'}),
       []
     )
   }, 'Should support `object` test')
+
+  test.doesNotThrow(function () {
+    test.deepEqual(
+      findAllBetween({
+        type: 'foo',
+        children: [{
+          type: 'foo'
+        }, {
+          type: 'bar'
+        }, {
+          type: 'baz'
+        }]
+      }, {type: 'foo'}, 2, 'bar'),
+      [{type: 'bar'}]
+    )
+
+    test.deepEqual(
+      findAllBetween({
+        type: 'foo',
+        children: [{
+          type: 'foo'
+        }, {
+          type: 'bar'
+        }, {
+          type: 'baz'
+        }]
+      }, 0, {type: 'baz'}, 'bar'),
+      [{type: 'bar'}]
+    )
+
+    test.deepEqual(
+      findAllBetween({
+        type: 'foo',
+        children: [{
+          type: 'foo'
+        }, {
+          type: 'bar'
+        }, {
+          type: 'baz'
+        }]
+      }, {type: 'foo'}, 2, {type: 'bar', value: 'baz'}),
+      []
+    )
+  }, 'Should support `node` as `start` and/or `end`.')
 
   test.end()
 })

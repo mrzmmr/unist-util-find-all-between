@@ -4,6 +4,7 @@
  * Dependencies
  */
 var is = require('unist-util-is');
+var find = require('unist-util-find');
 
 /*
  * Find nodes between `start` and `end` in `parent` which pass `test`.
@@ -22,21 +23,29 @@ function findAllBetween(parent, start, end, test) {
   var length = check(end);
   var child;
 
-  while (index < length) {
+  while (++index < length) {
     child = children[index];
 
-    if (is(test, child, index, parent)) {
+    if (is(child, test, index, parent)) {
       results.push(child);
     }
-
-    index++;
   }
 
   return results;
 
   function check(index) {
     if (index && index.type) {
-      index = children.indexOf(index);
+      // `find` will match the parent node but we only want
+      // to check child nodes.
+      if (parent.type === index.type) {
+        parent = {
+          type: parent.type + '-root',
+          children: parent.children
+        }
+      }
+
+      var node = find(parent, index);
+      index = children.indexOf(node);
     }
 
     if (isNaN(index) || index < 0 || index === Infinity) {
@@ -44,8 +53,8 @@ function findAllBetween(parent, start, end, test) {
     }
 
     /* Performance. */
-    if (index > children.length) {
-      index = children.length;
+    if (index >= children.length) {
+      index = children.length - 1;
     }
 
     return index;
