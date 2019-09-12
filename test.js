@@ -1,7 +1,6 @@
 'use strict';
 
 var findAllBetween = require('./')
-var remark = require('remark')
 var test = require('tap').test
 
 test('unist-util-find-all-between', function (test) {
@@ -40,9 +39,9 @@ test('unist-util-find-all-between', function (test) {
         children: [{
           type: 'bar'
         },
-        {
-          type: 'baz'
-        }]
+          {
+            type: 'baz'
+          }]
       }, 0, 1, false)
     }, 'Expected function, string, or object as test')
   }, 'Should fail with invalid test')
@@ -54,9 +53,9 @@ test('unist-util-find-all-between', function (test) {
         children: [{
           type: 'bar'
         },
-        {
-          type: 'baz'
-        }]
+          {
+            type: 'baz'
+          }]
       }, 0, 1),
       [{type: 'bar'}]
     )
@@ -67,9 +66,9 @@ test('unist-util-find-all-between', function (test) {
         children: [{
           type: 'bar'
         },
-        {
-          type: 'baz'
-        }]
+          {
+            type: 'baz'
+          }]
       }, 0, 2),
       [{type: 'bar'}, {type: 'baz'}]
     )
@@ -82,9 +81,9 @@ test('unist-util-find-all-between', function (test) {
         children: [{
           type: 'bar'
         },
-        {
-          type: 'baz'
-        }]
+          {
+            type: 'baz'
+          }]
       }, 0, 1, 'bar'),
       [{type: 'bar'}]
     )
@@ -95,9 +94,9 @@ test('unist-util-find-all-between', function (test) {
         children: [{
           type: 'bar'
         },
-        {
-          type: 'baz'
-        }]
+          {
+            type: 'baz'
+          }]
       }, 0, 1, 'baz'),
       []
     )
@@ -110,9 +109,9 @@ test('unist-util-find-all-between', function (test) {
         children: [{
           type: 'bar'
         },
-        {
-          type: 'baz'
-        }]
+          {
+            type: 'baz'
+          }]
       }, 0, 1, function (node) {
         return node.type === 'bar'
       }),
@@ -125,9 +124,9 @@ test('unist-util-find-all-between', function (test) {
         children: [{
           type: 'bar'
         },
-        {
-          type: 'baz'
-        }]
+          {
+            type: 'baz'
+          }]
       }, 0, 1, function (node) {
         return node.type === 'baz'
       }),
@@ -142,9 +141,9 @@ test('unist-util-find-all-between', function (test) {
         children: [{
           type: 'bar'
         },
-        {
-          type: 'baz'
-        }]
+          {
+            type: 'baz'
+          }]
       }, 0, 1, {type: 'bar'}),
       [{type: 'bar'}]
     )
@@ -155,9 +154,9 @@ test('unist-util-find-all-between', function (test) {
         children: [{
           type: 'bar'
         },
-        {
-          type: 'baz'
-        }]
+          {
+            type: 'baz'
+          }]
       }, 0, 1, {type: 'baz'}),
       []
     )
