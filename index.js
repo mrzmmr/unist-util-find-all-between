@@ -1,51 +1,50 @@
 'use strict';
 
-/*
- * Dependencies
- */
-var is = require('unist-util-is');
+const is = require('unist-util-is');
+const find = require('unist-util-find');
 
-/*
- * Find nodes between `start` and `end` in `parent` which pass `test`.
- */
 function findAllBetween(parent, start, end, test) {
-  /*
-   * Type check parent node
-   */
   if (!parent || !parent.type || !parent.children) {
     throw new Error('Expected parent node');
   }
 
-  var children = parent.children;
-  var results = [];
-  var index = check(start);
-  var length = check(end);
-  var child;
+  const {children} = parent;
+  const results = [];
+  let index = check(start);
+  const length = check(end);
+  let child;
 
-  while (index < length) {
+  while (++index < length) {
     child = children[index];
 
-    if (is(test, child, index, parent)) {
+    if (is(child, test, index, parent)) {
       results.push(child);
     }
-
-    index++;
   }
 
   return results;
 
   function check(index) {
     if (index && index.type) {
-      index = children.indexOf(index);
+      // `find` will match the parent node but we only want
+      // to check child nodes.
+      if (parent.type === index.type) {
+        parent = {
+          type: parent.type + '-root',
+          children: parent.children
+        };
+      }
+
+      const node = find(parent, index);
+      index = children.indexOf(node);
     }
 
     if (isNaN(index) || index < 0 || index === Infinity) {
       throw new Error('Expected positive finite index or child node');
     }
 
-    /* Performance. */
-    if (index > children.length) {
-      index = children.length;
+    if (index >= children.length) {
+      index = children.length - 1;
     }
 
     return index;

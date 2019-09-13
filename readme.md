@@ -5,54 +5,100 @@
 Status](https://coveralls.io/repos/github/mrzmmr/unist-util-find-all-between/badge.svg?branch=master)](https://coveralls.io/github/mrzmmr/unist-util-find-all-between?branch=master)
 
 
-> Utility to find nodes between two nodes
-
-## Table of Contents
-
-- [Install](#install)
-- [Usage](#usage)
-- [Contribute](#contribute)
-- [License](#license)
+[unist](https://github.com/syntax-tree/unist) utility to find nodes between two nodes.
 
 ## Install
 
 ```sh
-npm install unist-util-find-all-between --save
+npm i -S unist-util-find-all-between
 ```
 
 ## Usage
 
 ```js
-var findAllBetween = require('unist-util-find-all-between');
-var inspect = require('unist-util-inspect')
-var remark = require('remark');
+const between = require('unist-util-find-all-between')
+const u = require('unist-builder')
 
-var tree = remark().parse('Some _emphasis_, **importance**, and `code`.');
+const parent = u('tree', [
+  u('leaf', 'leaf 1'),
+  u('node', [u('leaf', 'leaf 2'), u('leaf', 'leaf 3')]),
+  u('leaf', 'leaf 4'),
+  u('node', [u('leaf', 'leaf 5')]),
+  u('leaf', 'leaf 6'),
+  u('void'),
+  u('leaf', 'leaf 7')
+])
 
-var parent = tree.children[0]
-var start = parent.children[0]
-var end = parent.children[parent.children.length - 1]
+const result = between(parent, 0, 4, 'leaf')
 
-console.log(inspect(findAllBetween(parent, start, end, 'text')))
+console.log(result)
 ```
 
 Yields:
 
-```bash
-text: "Some _emphasis__, " (1:1-1:19, 0-18)
-text: ", and " (1:33-1:39, 32-38)
+```js
+[ { type: 'leaf', value: 'leaf 4' } ]
 ```
 
-## Tests
+You can also pass a node in as `start` and/or `end`. For example given the tree above,
 
-```sh
-npm install
-npm test
+```js
+// ...
+
+const start = {
+  type: 'leaf',
+  value: 'leaf 4'
+}
+
+const end = {
+  type: 'leaf',
+  value: 'leaf 6'
+}
+
+const result = between(parent, start, end, 'node')
+
+console.dir(result, {depth: null})
 ```
 
-## Dependencies
+Yields:
 
-- [unist-util-is](https://github.com/wooorm/unist-util-is): Utility to check if a node passes a test
+```js
+[ { type: 'node',
+    children: [ { type: 'leaf', value: 'leaf 5' } ] } ]
+```
+
+## API
+
+### `between(parent, start, end[, test])`
+
+Find all child nodes of `parent`, that pass `test` between but not including `start` and `end`.
+
+#### `parent`
+Type: `Node`
+
+Parent node to search through.
+
+#### `start`
+Type: `Node` | `index`
+
+Child of `parent` node. Can be an actual node or the index of a child node. If a node is given, [unist-util-find](https://github.com/blahah/unist-util-find#api) is used to find the node.
+
+#### `end`
+Type: `Node` | `index`
+
+Child of `parent` node. Can be an actual node or the index of a child node. If a node is given, [unist-util-find](https://github.com/blahah/unist-util-find#api) is used to find the node.
+
+#### `test`?
+Type: `Function` | `String` | `Object` | `Array`
+
+Test to find nodes. Uses [unist-util-is](https://github.com/syntax-tree/unist-util-is#api) to check.
+
+## Related
+
+- [`unist-util-find-all-before`](https://github.com/syntax-tree/unist-util-find-all-before)
+- [`unist-util-find-all-after`](https://github.com/syntax-tree/unist-util-find-all-after)
+- [`unist-util-find`](https://github.com/blahah/unist-util-find)
+- [`unist-util-is`](https://github.com/syntax-tree/unist-util-is)
 
 ## Contribute
 

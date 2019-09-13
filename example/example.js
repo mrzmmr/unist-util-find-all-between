@@ -1,10 +1,7 @@
-const stringify = require('remark-stringify')
-const find = require('unist-util-find')
-const parse = require('remark-parse')
-const unified = require('unified')
+const remark = require('remark')
 const between = require('../')
 
-const markdown = (`
+const markdown = `
 # Example
 
 **List one:**
@@ -21,54 +18,46 @@ const markdown = (`
 **List three:**
 - 6
 - 7
-`)
+`
 
-/**
- * Create a plugin for unified
- */
-const printlists = () => (tree, file) => {
-  const children = tree.children
+// Create a plugin for remark
+const plugin = () => tree => {
 
-    /**
-     * Getting the index for nodes is easier with find.
-     * It uses _.iteratee for comparison of objects and
-     * can acdept a fragment of an object for comparison.
-     */
-  const start = children.indexOf(find(tree, {
+  // `star` and `end` nodes to look for, and find between.
+  const start = {
     type: 'heading',
     children: [{
       value: 'Example'
     }]
-  }))
+  }
 
-  const end = children.indexOf(find(tree, {
+  const end = {
     type: 'heading',
     children: [{
       value: 'End'
     }]
-  }))
+  }
 
-  /**
-   * Test for list types and paragraph types
-   */
+  // Test for list types and paragraph types
   const test = node => node.type === 'list' || node.type === 'paragraph'
 
+  // Get lists between `start` and `end`
   const lists = between(tree, start, end, test)
 
-  /**
-   * Only return the lists and their label
-   */
+  // Store lists and their labels
   tree.children = lists
+
+  // Return new tree
   return tree
 }
 
-unified()
-  .use(parse)
-  .use(stringify)
-  .use(printlists)
+remark()
+  .use(plugin)
   .process(markdown)
-  .then(r => console.log(String(r)))
-  .catch(console.error)
+  .then(
+    result => console.log(result.toString()),
+    console.error
+  )
 
 /**
  * Outputs:
