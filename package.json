@@ -4,11 +4,17 @@
   "description": "Utility to find nodes between two nodes",
   "main": "index.js",
   "engines": {
-    "node": ">=8"
+    "node": ">=10"
   },
+  "files": [
+    "index.js",
+    "types/index.d.ts"
+  ],
+  "types": "types/index.d.ts",
   "scripts": {
     "lint": "xo",
-    "test": "npm run lint && tap -Rspec --100 test.js",
+    "test-types": "tsd",
+    "test": "npm run lint && npm run test-types && tap -Rspec --100 test.js",
     "report": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
@@ -34,9 +40,12 @@
     "unist-util-is": "^4.0.2"
   },
   "devDependencies": {
+    "@types/unist": "^2.0.3",
     "coveralls": "^3.1.0",
     "prettier": "^2.0.5",
     "tap": "^14.10.8",
+    "tsd": "^0.13.1",
+    "typescript": "^3.9.7",
     "xo": "^0.32.1"
   },
   "xo": {
