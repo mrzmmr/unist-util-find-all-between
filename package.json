@@ -30,11 +30,11 @@
   "homepage": "https://github.com/mrzmmr/unist-util-find-all-between#readme",
   "dependencies": {
     "unist-util-find": "^1.0.1",
-    "unist-util-is": "^4.0.0"
+    "unist-util-is": "^4.0.2"
   },
   "devDependencies": {
-    "coveralls": "^3.0.6",
-    "tap": "^14.10.7",
-    "xo": "^0.24.0"
+    "coveralls": "^3.1.0",
+    "tap": "^14.10.8",
+    "xo": "^0.32.1"
   }
 }
