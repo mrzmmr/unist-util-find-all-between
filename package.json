@@ -35,14 +35,22 @@
   },
   "devDependencies": {
     "coveralls": "^3.1.0",
+    "prettier": "^2.0.5",
     "tap": "^14.10.8",
     "xo": "^0.32.1"
   },
   "xo": {
-    "semicolon": true,
-    "space": 2,
+    "prettier": true,
     "rules": {
       "unicorn/prefer-number-properties": "off"
     }
+  },
+  "prettier": {
+    "tabWidth": 2,
+    "useTabs": false,
+    "singleQuote": true,
+    "bracketSpacing": false,
+    "semi": true,
+    "trailingComma": "none"
   }
 }
