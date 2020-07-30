@@ -1,5 +1,5 @@
-const remark = require('remark')
-const between = require('../')
+const remark = require('remark');
+const between = require('..');
 
 const markdown = `
 # Example
@@ -18,38 +18,37 @@ const markdown = `
 **List three:**
 - 6
 - 7
-`
+`;
 
 // Create a plugin for remark
 const plugin = () => tree => {
-
   // `star` and `end` nodes to look for, and find between.
   const start = {
     type: 'heading',
     children: [{
       value: 'Example'
     }]
-  }
+  };
 
   const end = {
     type: 'heading',
     children: [{
       value: 'End'
     }]
-  }
+  };
 
   // Test for list types and paragraph types
-  const test = node => node.type === 'list' || node.type === 'paragraph'
+  const test = node => node.type === 'list' || node.type === 'paragraph';
 
   // Get lists between `start` and `end`
-  const lists = between(tree, start, end, test)
+  const lists = between(tree, start, end, test);
 
   // Store lists and their labels
-  tree.children = lists
+  tree.children = lists;
 
   // Return new tree
-  return tree
-}
+  return tree;
+};
 
 remark()
   .use(plugin)
@@ -57,7 +56,7 @@ remark()
   .then(
     result => console.log(result.toString()),
     console.error
-  )
+  );
 
 /**
  * Outputs:
